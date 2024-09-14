@@ -1,0 +1,379 @@
+/* Ensure the overlay covers the entire viewport */
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  z-index: 1000; /* Makes sure the overlay is on top */
+  background-color: rgba(0,0,0,0.4); /* Black with opacity */
+}
+
+/* Ensure the modal content is positioned relative */
+.modal-content {
+  position: relative; /* Required for absolute positioning of child elements */
+  font-size: 20px;
+  width: auto;
+  background-color: white;
+  opacity: 100%;
+  padding: 100px 100px 30px 100px; /* Adjust padding if needed */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/* Position title container at the top left corner of the modal content */
+.titleContainer {
+  position: absolute;
+  top: 20px; /* Distance from the top */
+  left: 20px; /* Distance from the left */
+}
+
+/* Modal title */
+.modalTitle {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0; /* Remove default margin */
+  padding-bottom: 10px; /* Adjust padding if needed */
+}
+
+/* Close button style */
+#closed {
+  font-size: 34px; /* Adjust size as needed */
+  cursor: pointer;
+  position: absolute; /* Position it relative to the .modal-content */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  color: #333;
+}
+
+#closed:hover {
+  font-weight: 700;
+}
+
+/* Modal title */
+.modalTitle {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Align form groups vertically */
+.form-group {
+  padding: 0;
+  margin: 0;
+}
+.label{
+  margin: 0;
+  margin-top: 30px;
+ 
+}
+
+/* Style for the input wrapper to provide space and alignment */
+.input-wrapper {
+  position: relative; /* Ensure labels position correctly */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for input fields and select elements */
+.input-wrapper input, 
+.input-wrapper select {
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 0.3rem 0.3rem; /* Padding inside the input */
+  font-size: 1rem; /* Font size */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+  box-sizing: border-box; /* Ensure padding and border are included in the total width */
+}
+
+/* Floating label style */
+.input-wrapper label {
+  position: absolute; /* Position label absolutely */
+  top: 50%; /* Center label vertically */
+  left: 1rem; /* Left margin */
+  background: white; /* Background color to cover input */
+  padding: 0 0.25rem; /* Padding around the text */
+  color: #666; /* Label color */
+  transition: 0.3s; /* Smooth transition */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  pointer-events: none; /* Ensure label doesn't interfere with input focus */
+  font-size: 1rem; /* Same font size as input for consistency */
+}
+
+/* Floating label when input is focused or has value */
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label,
+.input-wrapper select:focus + label,
+.input-wrapper select:not(:placeholder-shown) + label {
+  top: -1rem; /* Move label up */
+  left: 0.75rem; /* Adjust position */
+  font-size: 0.75rem; /* Smaller font size */
+  color: #007bff; /* Color when focused */
+}
+
+/* Ensure input wrapper has relative position for floating label */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1rem; /* Space between input fields */
+}
+
+/* Adjust input size according to label */
+.input-wrapper input, 
+.input-wrapper select {
+  width: 100%; /* Full width within wrapper */
+}
+
+/* Button container style */
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* Space between buttons */
+  margin-top: 25px; /* Space above buttons */
+
+}
+
+/* General button style */
+.buttons button {
+  background-color: #007bff; /* Primary color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 25px; /* Padding inside the button */
+  font-size: 16px; /* Font size */
+  font-weight: 600; /* Font weight */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px; /* Subtle shadow */
+}
+
+/* Button hover effect */
+.buttons button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 12px; /* Enhanced shadow on hover */
+}
+
+/* Button active effect */
+.buttons button:active {
+  background-color: #004494; /* Even darker shade on click */
+  transform: translateY(1px); /* Slight push down effect */
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px; /* Restore shadow on click */
+}
+
+/* Specific styles for the "Close" button */
+.buttons button[type="button"] {
+  background-color: #f44336; /* Red color */
+}
+
+.buttons button[type="button"]:hover {
+  background-color: #c62828; /* Darker red on hover */
+}
+
+/* Specific styles for the "Submit" button */
+.buttons button[type="submit"] {
+  background-color: #28a745; /* Green color */
+}
+
+.buttons button[type="submit"]:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+
+// General Modal Styling
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  z-index: 1000; /* Makes sure the overlay is on top */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+
+  // Modal content styling
+  .modal-content {
+    position: relative;
+    font-size: 16px;
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    max-width: 90%; /* Responsive width */
+    max-height: 90%; /* Responsive height */
+    overflow-y: auto; /* Scroll if content overflows */
+  }
+
+  /* Modal header styling */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .modalTitle {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .close-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+}
+
+// General Button Styling
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:active {
+      background-color: #004494;
+    }
+  }
+
+  // Specific styles for close and submit buttons
+  button[type="button"] {
+    background-color: #f44336;
+
+    &:hover {
+      background-color: #c62828;
+    }
+  }
+
+  button[type="submit"] {
+    background-color: #28a745;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
+
+// Password toggle styling
+.password-toggle {
+  display: block;
+  margin-top: 5px;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+// User Account Modal Specific Styling
+.component-container>.modal>.user-account-modal-container {
+  position: relative;
+  font-size: 16px;
+  background-color: white;
+  width: 30%;
+  padding: 50px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  max-width: 90%; /* Responsive width */
+  max-height: 90%; /* Responsive height */
+  overflow-y: auto; /* Scroll if content overflows */
+}
+
+// Form Group Styling
+.form-groupp {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    width: 100%; /* Full width */
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+}
+
+// Header styling for user account modal
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .close-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+// Additional styles for form elements, if needed
+.user-form {
+  // Additional styles for form can be added here if needed
+}
+
+/* Button container to handle alignment */
+.buttons-container {
+  display: flex;
+  justify-content: flex-end; /* Align button to the right */
+  margin-top: 20px; /* Space above the button */
+}
+
+/* Modern Button Styling */
+.modern-submit-button {
+  background-color: #E60012; /* Primary color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 12px 24px; /* Padding for size */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px; /* Subtle shadow */
+}
+
+/* Hover state */
+.modern-submit-button:hover {
+  background-color: #c2001a; /* Slightly darker shade of red */
+}
+
+/* Focus state */
+.modern-submit-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px 3px rgba(230, 0, 18, 0.5); /* Custom focus outline */
+}
+
+/* Active state */
+.modern-submit-button:active {
+  background-color: #a30015; /* Even darker shade of red */
+  transform: scale(0.98); /* Slight scale down on click */
+}

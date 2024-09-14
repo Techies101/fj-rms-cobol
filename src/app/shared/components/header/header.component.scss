@@ -1,0 +1,146 @@
+/* src/app/header/header.component.scss */
+
+.header {
+  height: 7%;
+  min-height: 40px;
+  background-color: #E60012;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  .material-icons {
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+  }
+
+  .icons-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .home-icon, .notification-icon, .logout-icon {
+    margin-right: 30px;
+  }
+
+  .notification-icon {
+    margin-right: 30px;
+  }
+
+  .header-title {
+    flex: 1;
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-left: 16px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 10px;
+    padding: 0 8px;
+
+    .material-icons {
+      font-size: 16px;
+    }
+
+    .header-title {
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .home-icon, .notification-icon, .logout-icon {
+      font-size: 20px;
+      margin-left: 5px;
+    }
+  }
+}
+
+@media (min-width: 601px) {
+  .header {
+    padding: 0 16px;
+  }
+}
+
+.roleNuser {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin-right: 25px;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.role {
+  text-align: center;
+}
+
+/* Side Navigation Styles */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Initially hidden off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  transition: left 0.3s ease; /* Smooth sliding effect */
+  z-index: 1001; /* Ensure it's above other content */
+  padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  #close-icon {
+    position: absolute; /* Position relative to the side-nav container */
+    top: 16px; /* Adjust as needed for spacing from the top */
+    right: 16px; /* Adjust as needed for spacing from the right */
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 20px 0;
+      a {
+        color: #333;
+        text-decoration: none;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+/* Show the side nav */
+.side-nav.open {
+  left: 0; /* Slide in from the left */
+}
+.accDetails{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#userIcon{
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+.accdetailsTitle{
+  font-size: 25px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.accdetailsContent{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}

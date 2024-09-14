@@ -1,0 +1,252 @@
+/* Ensure the overlay covers the entire viewport */
+.modal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Ensure the modal content is positioned relative */
+  .modal-content {
+    position: relative;
+    font-size: 16px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90%;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+  
+  /* Close icon styling */
+  .close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close-icon:hover {
+    font-weight: 700;
+    color: black;
+  }
+  
+  /* General content styling */
+  .actualContent {
+    margin-bottom: 30px;
+  }
+  
+  /* Form container styling */
+  .form-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+  
+  /* Grouping form fields */
+  .inputs {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of items if they don't fit in one row */
+    gap: 20px; /* Space between columns */
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 200px; /* Adjust as needed */
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Add Trainee container styling */
+  .addTraineeContainer {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .searchNaddBtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .searchNaddBtn label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .searchNaddBtn input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .searchNaddBtn input:focus {
+    border-color: #E60012;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+  }
+  
+  .search-results-container {
+    position: relative;
+    z-index: 1001;
+    margin-bottom: 20px;
+  }
+  
+  .search-results {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .search-results ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search-results li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-results li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Trainee list container */
+  .trainee-list-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+  }
+  
+  .trainee-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .trainee-list-container th,
+  .trainee-list-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .trainee-list-container th {
+    background-color: #f4f4f4;
+  }
+  
+  /* Cancel and Save buttons styling */
+  .cancelNsaveBtns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .cancelNsaveBtns button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancelNsaveBtns button:hover {
+    opacity: 0.9;
+  }
+  
+  .cancelNsaveBtns button:first-child {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .cancelNsaveBtns button:last-child {
+    background-color: #4CAF50;
+    color: white;
+  }
+  /* Red underline styling */
+  .red-underline {
+    text-decoration: underline;
+    text-decoration-color: red; // Adds red color to the underline
+    text-decoration-thickness: 3px; // Controls the thickness of the underline
+    text-underline-offset: 10px; // Adds space between the text and the underline
+    font-size: 24px; // Font size for the title
+    font-weight: 700; // Makes the text bold
+  }
+
+  .trainee-list {
+    display: flex;
+    align-items: center;
+    color: rgb(247, 49, 49); 
+    border: none; 
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .del-text {
+    color: #333;
+    font-size: 14px;
+  }

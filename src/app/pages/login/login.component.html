@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="left-side">
+    <img src="assets/Fujitsu-Logo.svg" alt="Fujitsu Logo" class="icon">
+    <p class="text">Resource Management Tool</p>
+  </div>
+  <div class="right-side">
+    <p class="sign-in-text">Sign In</p>
+    <form class="login-form" (ngSubmit)="onSignIn()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="input-field" required placeholder="example@example.com" [(ngModel)]="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="input-field" required placeholder="**********" [(ngModel)]="password">
+      </div>
+      <div class="additional-options">
+        <label class="remember-me">
+          <input type="checkbox" id="remember-me" name="remember-me" [(ngModel)]="rememberMe">
+          Remember Me
+        </label>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+      <button type="submit" class="submit-button">Sign in</button>
+    </form>
+  </div>
+</div>
+

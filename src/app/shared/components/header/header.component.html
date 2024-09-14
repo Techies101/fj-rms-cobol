@@ -1,0 +1,29 @@
+<header class="header">
+  <i class="material-icons" id="menu-icon" (click)="toggleSideNav()">menu</i>
+  <span class="header-title">Resource Management Tool</span>
+  <div class="icons-group">
+    <div class="roleNuser">
+      <span class="role">{{user?.Role}}</span>
+      <span class="user">{{user?.Fullname}}</span>
+    </div>
+    <i class="material-icons home-icon" (click)="redirectToLanding()">home</i>
+    <i class="material-icons notification-icon">notifications</i>
+    <i class="material-icons logout-icon" (click)="logout()">logout</i> 
+  </div>
+</header>
+
+<!-- Side Navigation -->
+<nav class="side-nav" id="side-nav">
+  <i class="material-icons" id="close-icon" (click)="toggleSideNav()">close</i>
+  <div class="accDetails">
+    <span class="material-symbols-outlined" id="userIcon">
+      account_circle
+      </span>
+      <span class="accdetailsTitle">Account details</span>
+      <div class="accdetailsContent">
+        <label for="Role">Role Code: {{user?.Role}}</label>
+        <span class="Email">Email: {{user?.Username}}</span>
+      </div>
+    
+  </div>
+</nav>

@@ -1,0 +1,53 @@
+<div class="component-container">
+    <div class="modal" *ngIf="isPreviewOpen">
+      <div class="modal-content">
+        <div class="sample">
+          <span>Export Preview [[ Employee/Training/Trainee list ]]</span>
+          <span class="material-symbols-outlined" id="closed" (click)="closePreview()">disabled_by_default</span>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Code</th>
+                  <th>Manager</th>
+                  <th>RBU</th>
+                  <th>Division</th>
+                  <th>Unit</th>
+                  <th>Status</th>
+                  <th>aaa</th>
+                  <th>bbb</th>
+                  <th>ccc</th>
+                </tr>
+              </thead>
+              <tbody class="tableBody">
+                <tr *ngFor="let item of pagedData">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.department }}</td>
+                  <td>{{ item.code }}</td>
+                  <td>{{ item.manager }}</td>
+                  <td>{{ item.rbu }}</td>
+                  <td>{{ item.division }}</td>
+                  <td>{{ item.unit }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>{{ item.aaa }}</td>
+                  <td>{{ item.bbb }}</td>
+                  <td>{{ item.ccc }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <button class="export-button" (click)="exportData()">Export</button>
+            <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

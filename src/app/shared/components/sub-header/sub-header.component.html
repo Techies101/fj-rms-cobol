@@ -1,0 +1,10 @@
+<div class="menu-btns-container component-container margin-top">
+    <div class="menu-btn menu{{i}}" 
+        *ngFor="let item of menus; index as i" 
+        (click)="onClickMenu(i)"
+        id="menu{{i}}"
+        #{{item}}
+        [ngClass]="{'selected': menuIndex === i}">
+        {{menus[i].name}}
+    </div>
+</div>

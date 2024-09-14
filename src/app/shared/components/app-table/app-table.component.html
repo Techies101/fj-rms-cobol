@@ -1,0 +1,516 @@
+<app-sub-header [menus]="menus" [menuIndex]="menuSelectedIndex" (menuEvent)="getMenu($event)"></app-sub-header>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<app-forms
+    *ngIf="currentFormType!='training' && 
+            currentFormType != 'policy'"
+  [isFormOpen]="isFormOpen"
+  [formConfig]="formConfig"
+  [modalTitle]="modalTitle"
+  [pageTitle]="pageTitle"
+  [currentFormType]="currentFormType"
+  [data]="data"
+  [process]="process"
+  (closeForm)="closeModal()"
+  (submitForm)="handleSubmit($event)"
+  (getTableData)="getTableData()"
+  (reloadTable)="reloadTable()"
+  
+  >
+</app-forms>
+ 
+<div class="component-container">
+    <div class="title-container">
+        <span class="material-symbols-outlined back-button" id="icon" (click)="onClickBackButton()">arrow_back_ios_new</span>
+        <div class="pageTitle">{{pageTitle}}</div>
+    </div>
+    <div class="table-sub-head">
+        <div>
+            Search:
+            <input matInput (keyup)="searchChange($event)" type="text" name="search" id="search">
+        </div>
+        <div *ngIf="feature == 'admin' && pageTitle != 'Employee List' && pageTitle != 'Training List'; else notAdmin">
+            <button type="button" class="custom-btn-red" (click)="openModal(formType)">Add {{pageTitle}}</button>
+        </div>
+        <ng-template #notAdmin>
+            <div class="filter-container">
+                <div class="filter-info no-text-selection" (click)="toggleFilter()" [ngClass]="{'active' : isFilterVisible}">
+                    <label for="filter">Filter by:</label>
+                    <span class="material-symbols-outlined" [ngClass]="{'active': isFilterActive}">filter_alt</span>
+                </div>
+                <div class="filter-popup" *ngIf="isFilterVisible">
+                    <p>Filter options go here.</p>
+                    <button *ngFor="let options of filterOptions">{{ options }}</button>
+                    <!-- Add your filter options here -->
+                    <button (click)="applyFilter()">Apply Filter</button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    
+
+    <div class="table-container">
+        <table matSort mat-table [dataSource]="dataSource" class="data-table">
+            <ng-container *ngFor="let tableHeader of tableHeaders; index as i" [matColumnDef]="tableHeader">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef class="{{columnWidths[i]}}">{{tableHeader}}</th>
+                <tbody class="tableBody">
+                    <td mat-cell *matCellDef="let item; index as index">
+                        {{item[tableColumns[i]]}}
+                        <ng-container *ngIf="i < (tableHeaders.length - 1); else hasButton" class="text-left"></ng-container>
+                        <ng-template #hasButton>
+                            <ng-container *ngIf="feature == 'admin' && pageTitle != 'Employee List'; else notAdminTable">
+                                <td class="table-btn-container">
+                                    <div class="table-btn two-btn no-text-selection view-button" (click)="onClickEdit(item)">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </div>
+                                    <div class="table-btn two-btn no-text-selection delete-button" (click)="onClickDelete(item)">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <ng-template #notAdminTable>
+                                <ng-container *ngIf="pageTitle == 'Export Report'; else viewOnly">
+                                    <td class="table-btn-container">
+                                        <div class="table-btn two-btn no-text-selection view-button">
+                                            <span class="material-symbols-outlined">table_view</span>
+                                        </div>
+                                        <div class="table-btn two-btn no-text-selection delete-button">
+                                            <span class="material-symbols-outlined">download</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-template #viewOnly>
+                                    <ng-container>
+                                        <td class="table-btn-container">
+                                            <div class="table-btn one-btn no-text-selection view-button" (click)="onClickView(item)">
+                                                <span class="material-symbols-outlined">table_view</span>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </ng-template>
+                            </ng-template>
+                        </ng-template>
+                    </td>
+                </tbody>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+            <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
+        </table>
+
+        <ng-container *ngIf="columnItems.length == 0 && empty">
+            <div class="table-empty">
+                {{ empty }}
+            </div>
+        </ng-container>
+    </div>
+    
+    <div class="footer">
+        <mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event"
+              class="mat-paginator">
+        </mat-paginator>
+        <div class="button-container">
+            <button *ngIf="pageTitle == 'Reports'; else addTraining" type="button" class="custom-btn-red">Export as pdf</button>
+            <ng-template #addTraining>
+                <ng-container  *ngIf="pageTitle == 'Training List'">
+                    <button type="button" class="custom-btn-red" (click)="openModal('training')">Add Training</button>
+                </ng-container>
+            </ng-template>
+        </div>
+        
+    </div>
+</div>
+
+<!-- ADD TRAINING MODAL -->
+ <ng-container *ngIf="isFormOpen && currentFormType=='training'">
+    <app-add-training (closeForm)="closeModal()" (getTableData)="getTableData()">
+    </app-add-training>
+ </ng-container>
+
+ <ng-container *ngIf="isFormOpen && currentFormType=='policy'">
+ <div class="modal-back">
+
+    <div class="modal-container-add-policy">
+        <div #modalAdd id="modalAdd" class="modalBox" backdrop="static">
+            <div class="modal-header">
+                Add {{pageTitle}}
+                <div id="modalClose" class="no-text-selection" (click)="closeModal()">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-top">
+                    <div class="top-column">
+                        <div>Code: <input type="text" name="code" id="code" [(ngModel)]="policyData.PolicyCode"></div>
+                        <div>Name: <input type="text" name="name" id="name" [(ngModel)]="policyData.PolicyName"></div>
+                        <div>Description: <input type="text" name="description" id="description" [(ngModel)]="policyData.PolicyDescription"></div>
+                    </div>
+                    <div class="top-column">
+                        <mat-form-field>
+                            <mat-label>User</mat-label>
+                            <mat-select (selectionChange)="onChangeSelection('user', $event.value)">
+                              @for (user of users; track user) {
+                                <mat-option [value]="user.UserId">{{user.Name}}</mat-option>
+                              }
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="top-column">
+                        <mat-form-field>
+                            <mat-label>Role</mat-label>
+                            <mat-select (selectionChange)="onChangeSelection('role', $event.value)">
+                              @for (role of roles; track role) {
+                                <mat-option [value]="role.RoleId">{{role.Name}}</mat-option>
+                              }
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="modal-body-main">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="top-left-header"></td>
+                                <td class="w-15" *ngFor="let topItem of policyTopHeader; index as indexTop">
+                                    {{ topItem.ModuleName }}
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let leftItem of policyLeftHeader; index as indexLeft">
+                                <td>{{ leftItem.name }}</td>
+                                <td *ngFor="let topItem of policyTopHeader; index as indexSelected">
+                                    <div class="checkbox-container">
+                                        <label class="container">
+                                            <input 
+                                                type="checkbox" 
+                                                [checked]="isChecked(indexLeft, indexSelected)"
+                                                (change)="onCheckboxChange($event, indexLeft, indexSelected)">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="custom-btn-cancel no-text-selection" (click)="closeModal()">Cancel</button>
+                <button class="custom-btn-red no-text-selection" (click)="onClickSave()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-container>
+
+<!-- Add People Modal-->
+<!-- <div class="modal add-people-modal" *ngIf="isAddPeopleModalOpen">
+    <div class="modal-content-add-people">
+      <span class="material-symbols-outlined close-icon" (click)="closeModal()">disabled_by_default</span>
+      <form class="modern-form" (ngSubmit)="onSubmitAddRM()">
+        <div class="form-sections-container">
+          <div class="form-section employee-details">
+            <h2>Add People Details</h2>
+            <div class="form-group">
+              <label for="zinzaiId">Zinzai ID</label>
+              <input id="zinzaiId" type="text" [(ngModel)]="user.zinzaiId" name="zinzaiId" placeholder="Enter Zinzai ID">
+            </div>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input id="firstName" type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+              <label for="middleName">Middle Name</label>
+              <input id="middleName" type="text" [(ngModel)]="user.middleName" name="middleName" placeholder="Enter middle name">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+              <label for="employeeTitle">Employee Title/Position</label>
+              <input id="employeeTitle" type="text" [(ngModel)]="user.employeeTitle" name="employeeTitle" placeholder="Enter title/position">
+            </div>
+          </div>
+          <div class="form-section organization-info">
+            <h2>Organization Information</h2>
+            <div class="form-group">
+              <label for="rbu">RBU</label>
+              <select id="rbu" [(ngModel)]="user.rbu" name="rbu">
+                <option *ngFor="let rbu of rbuOptions" [value]="rbu.value">{{ rbu.viewValue }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" [(ngModel)]="user.department" name="department">
+                <option *ngFor="let department of departments" [value]="department.value">{{ department.viewValue }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="division">Division</label>
+              <select id="division" [(ngModel)]="user.division" name="division">
+                <option *ngFor="let division of divisions" [value]="division.value">{{ division.viewValue }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="unit">Unit</label>
+              <select id="unit" [(ngModel)]="user.unit" name="unit">
+                <option *ngFor="let unit of units" [value]="unit.value">{{ unit.viewValue }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-section roles-responsibilities">
+          <h2>Roles and Responsibilities</h2>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="user.isManager" name="isManager">
+              Is Manager
+            </label>
+            <label>
+              <input type="checkbox" [(ngModel)]="user.isTrainer" name="isTrainer">
+              Is Trainer
+            </label>
+            <label>
+              <input type="checkbox" [(ngModel)]="user.isOperationManager" name="isOperationManager">
+              Is Operation Manager
+            </label>
+            <label>
+              <input type="checkbox" [(ngModel)]="user.isHR" name="isHR">
+              Is HR
+            </label>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button type="submit" class="modern-submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div> -->
+  
+  
+  <!-- Add RM Modal-->
+  <!-- <div class="modal add-people-modal" *ngIf="isAddRMModalOpen">
+    <div class="modal-content-add-people">
+      <span class="material-symbols-outlined close-icon" (click)="closeModal()">disabled_by_default</span>
+      <form class="modern-form" (ngSubmit)="onSubmitAddRM()">
+        <div class="form-section">
+          <h2>Add RM Details</h2>
+          <div class="formm-row">
+              <div class="formm-group">
+                  <label for="first-name">First Name</label>
+                  <input type="text" id="first-name" class="form-control" [(ngModel)]="user.firstName" name="firstName" required>
+              </div>
+              <div class="formm-group">
+                  <label for="middle-name">Middle Name</label>
+                  <input type="text" id="middle-name" class="form-control" [(ngModel)]="user.middleName" name="middleName">
+              </div>
+              <div class="formm-group">
+                  <label for="last-name">Last Name</label>
+                  <input type="text" id="last-name" class="form-control" [(ngModel)]="user.lastName" name="lastName" required>
+              </div>
+          </div>
+          <div class="formm-row">
+            <div class="formm-group">
+                <label for="position">Position</label>
+                <input type="text" id="position" class="form-control" [(ngModel)]="user.position" name="position" required>
+            </div>
+            <div class="formm-group">
+                <label for="zinzai-id">Zinzai ID</label>
+                <input type="text" id="zinzai-id" class="form-control" [(ngModel)]="user.zinzaiId" name="zinzaiId">
+            </div>
+            <div class="formm-group">
+                <label for="employee-email">Employee Email</label>
+                <input type="email" id="employee-email" class="form-control" [(ngModel)]="user.email" name="email" required>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formmm-group">
+                <label for="date-hired">Date Hired</label>
+                <input type="date" id="date-hired" class="form-control" [(ngModel)]="user.dateHired" name="dateHired" required>
+            </div>
+            <div class="formmm-group">
+                <label for="regularization-date">Regularization Date</label>
+                <input type="date" id="regularization-date" class="form-control" [(ngModel)]="user.regularizationDate" name="regularizationDate">
+            </div>
+            <div class="formmm-group">
+                <label for="resignation-date">Resignation Date</label>
+                <input type="date" id="resignation-date" class="form-control" [(ngModel)]="user.resignationDate" name="resignationDate">
+            </div>
+            <div class="formmm-group">
+                <label for="end-of-employment">End of Employment</label>
+                <input type="date" id="end-of-employment" class="form-control" [(ngModel)]="user.endOfEmployment" name="endOfEmployment">
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formmmm-group">
+              <label for="employee-projects">Employee Projects</label>
+              <textarea id="employee-projects" class="form-control" [(ngModel)]="user.employeeProjects" name="employeeProjects"></textarea>
+            </div>
+            <div class="formmmm-group">
+              <label for="employee-skills">Skills</label>
+              <textarea id="employee-skills" class="form-control" [(ngModel)]="user.employeeSkills" name="employeeSkills"></textarea>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formm-group">
+                <label for="person-title">Person Title</label>
+                <select id="person-title" class="form-control" [(ngModel)]="user.personTitle" name="personTitle">
+                    <option value="mr">Mr.</option>
+                    <option value="ms">Ms.</option>
+                    <option value="mrs">Mrs.</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="employee-status">Employee Status</label>
+                <select id="employee-status" class="form-control" [(ngModel)]="user.employeeStatus" name="employeeStatus">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="on-leave">On Leave</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="employee-location">Employee Location</label>
+                <select id="employee-location" class="form-control" [(ngModel)]="user.employeeLocation" name="employeeLocation">
+                    <option value="office">Office</option>
+                    <option value="remote">Remote</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formm-group">
+                <label for="grade-level">Grade Level</label>
+                <select id="grade-level" class="form-control" [(ngModel)]="user.gradeLevel" name="gradeLevel">
+                    <option value="junior">Junior</option>
+                    <option value="mid">Mid</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="fj-level">FJ Level</label>
+                <select id="fj-level" class="form-control" [(ngModel)]="user.fjLevel" name="fjLevel">
+                    <option value="level-1">Level 1</option>
+                    <option value="level-2">Level 2</option>
+                    <option value="level-3">Level 3</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="employee-contract-status">Employee Contract Status</label>
+                <select id="employee-contract-status" class="form-control" [(ngModel)]="user.employeeContractStatus" name="employeeContractStatus">
+                    <option value="permanent">Permanent</option>
+                    <option value="contract">Contract</option>
+                    <option value="intern">Intern</option>
+                </select>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formm-group">
+                <label for="gender">Gender</label>
+                <select id="gender" class="form-control" [(ngModel)]="user.gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="non-binary">Non-Binary</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="rbu">RBU</label>
+                <select id="rbu" class="form-control" [(ngModel)]="user.rbu" name="rbu">
+                    <option value="rbu1">RBU 1</option>
+                    <option value="rbu2">RBU 2</option>
+                    <option value="rbu3">RBU 3</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="department">Department</label>
+                <select id="department" class="form-control" [(ngModel)]="user.department" name="department">
+                    <option value="hr">HR</option>
+                    <option value="it">IT</option>
+                    <option value="finance">Finance</option>
+                    <option value="marketing">Marketing</option>
+                </select>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formm-group">
+                <label for="division">Division</label>
+                <select id="division" class="form-control" [(ngModel)]="user.division" name="division">
+                    <option value="division1">Division 1</option>
+                    <option value="division2">Division 2</option>
+                    <option value="division3">Division 3</option>
+                </select>
+            </div>
+            <div class="formm-group">
+                <label for="unit">Unit</label>
+                <select id="unit" class="form-control" [(ngModel)]="user.unit" name="unit">
+                    <option value="unit1">Unit 1</option>
+                    <option value="unit2">Unit 2</option>
+                    <option value="unit3">Unit 3</option>
+                </select>
+            </div>
+            <div class="formm-group">
+              <label for="is-bench">Is Bench</label>
+              <select id="is-bench" class="form-control" [(ngModel)]="user.isBench" name="isBench">
+                  <option value="">Classification</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button type="submit" class="modern-submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div> -->
+  
+  <!-- Add Reference Modal-->
+  <!-- <div class="modal add-people-modal" *ngIf="isAddReferenceModalOpen">
+    <div class="modal-content-add-people">
+      <span class="material-symbols-outlined close-icon" (click)="closeModal()">disabled_by_default</span>
+      <form class="modern-form" (ngSubmit)="onSubmitAddRM()">
+        <div class="form-section">
+          <h2>Add Reference Details</h2>
+          <div class="formm-row">
+            <div class="formm-group">
+              <label for="code">Code:</label>
+              <input type="text" id="code" name="code" [(ngModel)]="refData.code" required>
+            </div>
+            <div class="formm-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" [(ngModel)]="refData.name" required>
+            </div>
+          </div>
+          <div class="formm-row">
+            <div class="formmmm-groupp">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" [(ngModel)]="refData.description" rows="4" cols="50" required></textarea>
+            </div>
+            <div class="formmmm-group">
+              <label for="dropdown">Select an option:</label>
+              <select id="dropdown" name="dropdown" [(ngModel)]="refData.dropdown" required>
+                <option value="JLPT Level">JLPT Level</option>
+                <option value="Grade Level">Grade Level</option>
+                <option value="Person title">Person title</option>
+                <option value="FJ Level">FJ Level</option>
+                <option value="Position">Position</option>
+                <option value="Employee location">Employee location</option>
+                <option value="Employee contract status">Employee contract status</option>
+            </select>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button type="submit" class="modern-submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div> -->

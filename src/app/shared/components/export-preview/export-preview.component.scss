@@ -1,0 +1,101 @@
+.modal {
+    position: fixed;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    z-index: 1000; /* Makes sure the overlay is on top */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+  }
+  
+  .modal-content {
+    position: relative; /* Required for absolute positioning of child elements */
+    font-size: 16px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Ensure the modal takes a reasonable height */
+  }
+  
+  .sample {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .material-symbols-outlined {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-size: 24px;
+  }
+  
+  .table-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    flex: 1; /* Make table container take up remaining space */
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .data-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .pagination button:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    margin: 0 10px;
+  }
+  

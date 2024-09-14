@@ -1,0 +1,18 @@
+<app-sub-header [feature]="feature" [menus]="menus" (menuEvent)="getMenu($event)"></app-sub-header>
+<div class="component-container">
+    <div class="admin-component-body">
+        <div class="selections">
+            <div class="selection-head" *ngIf="menuSelectedIndex == 0; else otherTabs">
+                <div class="w-20">Go To</div>
+                <div>Shortcut Applications</div>
+            </div>
+            <ng-template #otherTabs>
+                <div class="selection-head">
+                    <div>Applications</div>
+                </div>
+            </ng-template>
+            <app-app-nav [feature]="feature" [menus]="menus" [menuSelectedIndex]="menuSelectedIndex"></app-app-nav>
+        </div>
+    </div>
+</div>
+

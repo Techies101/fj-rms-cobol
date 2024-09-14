@@ -1,0 +1,109 @@
+<div class="modal" *ngIf="isFormOpen && currentFormType != 'userAccount'">
+    <div class="modal-content">
+      <div class="titleContainer">
+        <span class="modalTitle">{{ modalTitle }}</span> <!-- Dynamic modal title -->
+      </div>
+      <div class="closeBtn">
+        <span class="material-symbols-outlined" id="closed" (click)="close()">disabled_by_default</span>
+      </div>
+      <div class="modal-table-container">
+       
+        <form (ngSubmit)="onSubmit(formConfig.groups[0].className)">
+          <div *ngFor="let group of formConfig.groups" >
+            <div [ngClass]="group.className">
+              <!-- Render form fields -->
+              <div *ngIf="group.className !== 'permissionsTable'" >
+                <div *ngFor="let field of group.fields" class="form-group" >
+                  <label class="label" [for]="field.id">{{ field.label }}:</label>
+                  <div class="input-wrapper">
+                    <input *ngIf="field.type === 'text'" [id]="field.id" [(ngModel)]="field.value" [name]="field.name" type="text">
+                    <select *ngIf="field.type === 'select'" [id]="field.id" [(ngModel)]="field.value" [name]="field.name">
+                      <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+                    </select>
+                    <input *ngIf="field.type === 'date'" [id]="field.id" [(ngModel)]="field.value" [name]="field.name" type="date">
+                  </div>
+                </div>
+              </div>
+              <!-- Render table with checkboxes -->
+              <div *ngIf="group.className === 'permissionsTable'">
+                <table>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let header of tableHeaders">{{ header }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of rowData">
+                      <td>{{ row.rowName }}</td>
+                      <td *ngFor="let column of row.columns">
+                        <input
+                          type="checkbox"
+                          [id]="row.rowName + '-' + column"
+                          [(ngModel)]="checkboxValues[row.rowName][column]"
+                          [name]="row.rowName + '-' + column"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button type="button" (click)="close()">Close</button>
+            <button type="submit">Submit</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Account Modal -->
+<ng-container *ngIf="isFormOpen && currentFormType == 'userAccount'">
+  <div class="component-container">
+    <div class="modal">
+      <div class="user-account-modal-container">
+        <div class="header">
+          <span class="title">Add User Account</span>
+          <span class="material-symbols-outlined close-icon" (click)="closeModal()">disabled_by_default</span>
+        </div>
+        <form class="user-form" (ngSubmit)="onSubmitB()">
+          <div class="form-groupp">
+            <label for="email">Email</label>
+            <input id="email" type="email" [(ngModel)]="userAccount.username" name="email" placeholder="Enter your email">
+          </div>
+          <div class="form-groupp">
+            <label for="password">Password</label>
+            <input id="password" [type]="passwordFieldType" [(ngModel)]="userAccount.password" name="password" placeholder="Enter your password">
+            <span class="password-toggle" (click)="togglePassword()">
+              {{ passwordFieldType === 'password' ? 'Show' : 'Hide' }}
+            </span>
+          </div>
+          <div class="form-groupp">
+            <label for="selectPeople">Select People</label>
+            <select id="selectPeople" name="selectPeople" [(ngModel)]="userAccount.personId">
+              <option *ngFor="let person of people" [value]="person.PersonId">{{ person.fullName }}</option>
+            </select>
+          </div>
+          <div class="form-groupp">
+            <label for="selectUserType">Select User Type</label>
+            <select id="selectUserType" name="selectUserType" [(ngModel)]="userAccount.userId">
+              <option *ngFor="let type of userTypes" [value]="type.UserId">{{ type.Name }}</option>
+            </select>
+          </div>
+          <div class="form-groupp">
+            <label for="anotherSelect">Select Role</label>
+            <select id="anotherSelect" name="anotherSelect" [(ngModel)]="userAccount.roleId">
+              <option *ngFor="let role of roles" [value]="role.RoleId">{{ role.Name }}</option>
+            </select>
+          </div>
+          <div class="buttons-container">
+            <button type="submit" class="modern-submit-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,70 @@
+/* 404.component.css */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #e8f0f2; /* Light teal background */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  padding: 20px; /* Add padding to ensure content is not touching the edges */
+}
+
+.error-content {
+  max-width: 450px; /* Width of the error box */
+  padding: 20px; /* Padding inside the error box */
+  background-color: #ffffff; /* White background for the error box */
+  border-radius: 12px; /* Slightly rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-code {
+  font-size: 100px; /* Large font size for the error code */
+  color: #E60012; /* Theme color for the error code */
+  margin: 0;
+  animation: randomAnimation 3s infinite; /* Apply random animation */
+}
+
+.error-message {
+  font-size: 22px; /* Font size for the error message */
+  color: #333; /* Dark grey for the error message */
+  margin: 10px 0;
+}
+
+.error-description {
+  font-size: 16px; /* Font size for the error description */
+  color: #666; /* Medium grey for the error description */
+  margin: 20px 0;
+}
+
+.error-link {
+  display: inline-block;
+  padding: 10px 20px; /* Padding for the button */
+  font-size: 16px; /* Font size for the button text */
+  color: #ffffff; /* White text for the link */
+  background-color: #E60012; /* Theme color for the button background */
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.error-link:hover {
+  background-color: #c20010; /* Darker shade of theme color for hover effect */
+  transform: scale(1.05); /* Slightly scale up the button on hover */
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+}
+
+@keyframes randomAnimation {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(10deg); }
+  50% { transform: scale(1) rotate(-10deg); }
+  75% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}

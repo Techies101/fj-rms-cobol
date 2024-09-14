@@ -1,0 +1,166 @@
+<div class="component-container">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close-icon material-symbols-outlined" (click)="closeModal()">close</span>
+      <div class="actualContent">
+        <div>
+          <span class="red-underline">Add Training</span>
+        </div>
+        <div class="form-container"  (click)="stopPropagation($event)">
+
+          <form [formGroup]="trainingForm">
+
+            <!-- Form Fields -->
+            <div class="inputs">
+              <div class="form-group">
+                <label for="training-code">Training Code</label>
+                <input 
+                  type="text" 
+                  id="training-code" 
+                  placeholder="Enter training code"
+                  formControlName="TrainingCode"
+                  name="trainingCode">
+              </div>
+              <div class="form-group">
+                <label for="training-name">Training Name</label>
+                <input 
+                  type="text" 
+                  id="training-name" 
+                  placeholder="Enter training name"
+                  formControlName="TrainingName"
+                  name="trainingName">
+              </div>
+            </div>
+            <div class="inputs">
+              <div class="form-group">
+                <label for="duration">Duration of Training</label>
+                <input 
+                  type="text" 
+                  id="duration" 
+                  formControlName="TrainingDurationInDays"
+                  name="duration">
+              </div>
+              <div class="form-group">
+                <label for="trainer">Trainer/SME</label>
+                <select 
+                  id="trainer" 
+                  name="trainer"
+                  formControlName="TrainerId">
+                  <option value="" selected disabled>Select a Trainer</option>
+                  <option *ngFor="let trainer of trainers;" [value]="trainer.PersonId">{{trainer.fullname}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="inputs">
+              <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input 
+                  type="date" 
+                  id="start-date"
+                  formControlName="TrainingStartDate"
+                  name="startDate">
+              </div>
+              <div class="form-group">
+                <label for="end-date">End Date</label>
+                <input 
+                  type="date" 
+                  id="end-date"
+                  formControlName="TrainingEndDate"
+                  name="endDate">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Training Description</label>
+              <textarea 
+                id="description" 
+                name="description" 
+                rows="4" 
+                placeholder="Description"
+                formControlName="TrainingDescription">
+              </textarea>
+            </div>
+
+            <div formGroupName="search" class="addTraineeContainer">
+              <div style="margin-bottom: 20px;">
+                <span 
+                  class="red-underline" 
+                  (click)="toggleListVisibility()" 
+                  style="cursor: pointer;">
+                  Add trainee list +
+                </span>
+              </div>
+              <div class="trainee-section">
+                <div *ngIf="isListVisible">
+                  <div class="searchNaddBtn">
+                    <label for="search">Search</label>
+                    <input 
+                      type="search" 
+                      id="search"
+                      formControlName="searchQuery"
+                      placeholder="Please search trainee..">
+                  </div>
+                  <div *ngIf="searchQuery" class="search-results-container">
+                    <div class="search-results">
+                      <span>Search Results:</span>
+                      <ul>
+                        <li *ngFor="let trainee of trainees" (click)="handleAddTrainees(trainee)">
+                          {{ trainee.TraineeFullname }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="trainee-list-container">
+                    <div>
+                      <span>Trainee list</span>
+                    </div>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Zinzai ID</th>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Skills</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let trainee of tempSelectedTrainees">
+                          <td>{{ trainee.ZinzaiId }}</td>
+                          <td>{{ trainee.TraineeFullname }}</td>
+                          <td>{{ trainee.Position }}</td>
+                          <td>{{ trainee.Skills }}</td>
+                          <td>
+                            <button class="trainee-list" mat-icon-button (click)="handleDelete(trainee.PersonId)">
+                              <div>
+                                <mat-icon>delete</mat-icon> 
+                              </div>
+                              <div class="del-text">
+                                <p>Delete</p>
+                              </div>
+                            </button>
+                          </td>
+                        </tr>
+                        <!-- Display a message if no trainees are selected -->
+                        <tr *ngIf="tempSelectedTrainees.length === 0">
+                          <td colspan="5" style="text-align: center;">{{traineeMSG}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>  
+  
+                </div>
+              </div>
+            </div>            
+
+            <div class="cancelNsaveBtns">
+              <button (click)="closeModal()">Cancel</button>
+              <button (click)="onSubmit()">Save</button>
+            </div>
+  
+          </form>
+           
+        </div>
+      </div>
+  </div>
+</div>

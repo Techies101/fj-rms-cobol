@@ -1,0 +1,20 @@
+<div class="selection-body">
+    <div class="option-container" *ngFor="let options of menus[menuSelectedIndex]?.applications; index as index">
+        <div *ngIf="menuSelectedIndex == 0 && index == 0; else otherTabs" class="goto-container">
+            <div class="no-text-selection goto-option" 
+            *ngFor="let goTo of menus[menuSelectedIndex].goTo; index as i" 
+            (click)="onClickOption(goTo, menus[menuSelectedIndex].goToUrl[i])">
+                <span class="icon material-symbols-outlined">{{menus[menuSelectedIndex].goToIcon[i]}}</span>
+                {{goTo}}
+            </div>
+        </div>
+        <ng-template #otherTabs>
+            <div class="no-text-selection option" 
+            (click)="onClickOption(options, menus[menuSelectedIndex].url[index])" 
+            [ngClass]="{'disabled': options === ''}">
+                <span class="icon-big material-symbols-outlined">{{menus[menuSelectedIndex].icon[index]}}</span>
+                {{options}}
+            </div>
+        </ng-template>
+    </div>
+</div>

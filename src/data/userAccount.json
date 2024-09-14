@@ -1,0 +1,584 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "rene.lara@fujitsu.com",
+            "password": "p@$$w0rd!",
+            "role": "admin",
+            "moduleAccess": [
+                "Admin Module",
+                "HRModule",
+                "Trainer Module",
+                "Manager Module"
+            ],
+            "policies": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 2,
+            "email": "bob.smith@example.com",
+            "password": "password456",
+            "role": "hr",
+            "moduleAccess": [
+                "HR Module"
+            ],
+            "policies": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 3,
+            "email": "charlie.brown@example.com",
+            "password": "password789",
+            "role": "manager",
+            "moduleAccess": [
+                "Manager Module"
+            ],
+            "policies": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 4,
+            "email": "diana.prince@example.com",
+            "password": "password101",
+            "role": "trainer",
+            "moduleAccess": [
+                "Trainer Module"
+            ],
+            "policies": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "status": [
+        {
+            "id": "EMP001",
+            "name": "Liam Turner",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP002",
+            "name": "Sophia Adams",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP003",
+            "name": "Noah Miller",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP004",
+            "name": "Olivia Brown",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP005",
+            "name": "Ethan Smith",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP006",
+            "name": "Emma Johnson",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP007",
+            "name": "James Davis",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP008",
+            "name": "Ava Wilson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP009",
+            "name": "Benjamin Garcia",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP010",
+            "name": "Isabella Martinez",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP011",
+            "name": "Mason Robinson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP012",
+            "name": "Charlotte Walker",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP013",
+            "name": "Jacob Lewis",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP014",
+            "name": "Amelia Clark",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP015",
+            "name": "Alexander Allen",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP016",
+            "name": "Mia Young",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP017",
+            "name": "William King",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP018",
+            "name": "Evelyn Scott",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP019",
+            "name": "Elijah Wright",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP020",
+            "name": "Harper Nelson",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP021",
+            "name": "Lucas Carter",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP022",
+            "name": "Avery Morris",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP023",
+            "name": "Michael Lee",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP024",
+            "name": "Sofia Ramirez",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP025",
+            "name": "Daniel White",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP026",
+            "name": "Ella Hughes",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP027",
+            "name": "James Taylor",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP028",
+            "name": "Olivia Anderson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP029",
+            "name": "Mason Brown",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP030",
+            "name": "Mia Wilson",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP031",
+            "name": "Owen Martinez",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP032",
+            "name": "Isabella Anderson",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP033",
+            "name": "Aiden Thomas",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP034",
+            "name": "Charlotte Moore",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP035",
+            "name": "Henry Lee",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP036",
+            "name": "Amelia Jackson",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP037",
+            "name": "Jack Harris",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP038",
+            "name": "Eleanor Martin",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP039",
+            "name": "Elena Thompson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP040",
+            "name": "Sebastian White",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP041",
+            "name": "Zoe Clark",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP042",
+            "name": "Leo Wright",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP043",
+            "name": "Aria Davis",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP044",
+            "name": "Jacob Brown",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP045",
+            "name": "Mia Garcia",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP046",
+            "name": "William Allen",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP047",
+            "name": "Ava Scott",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP048",
+            "name": "James Adams",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP049",
+            "name": "Ella Carter",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP050",
+            "name": "Daniel Lee",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP051",
+            "name": "Sophia Hall",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP052",
+            "name": "Michael Young",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP053",
+            "name": "Olivia King",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP054",
+            "name": "Ethan Lewis",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP055",
+            "name": "Avery Harris",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP056",
+            "name": "Harper Walker",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP057",
+            "name": "Liam Martinez",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP058",
+            "name": "Mia Green",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP059",
+            "name": "Alexander Lee",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP060",
+            "name": "Ava Wilson",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP061",
+            "name": "Jacob Davis",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP062",
+            "name": "Emily Robinson",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP063",
+            "name": "Benjamin White",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP064",
+            "name": "Emma Young",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP065",
+            "name": "Zoe Allen",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP066",
+            "name": "Noah Miller",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP067",
+            "name": "Charlotte Adams",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP068",
+            "name": "Liam White",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP069",
+            "name": "Harper Davis",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP070",
+            "name": "Mason King",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP071",
+            "name": "Sofia Thomas",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP072",
+            "name": "Isabella Harris",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP073",
+            "name": "Evelyn Anderson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP074",
+            "name": "Aiden White",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP075",
+            "name": "Emily Brown",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP076",
+            "name": "Lucas Young",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP077",
+            "name": "Zoe Scott",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP078",
+            "name": "Michael Green",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP079",
+            "name": "Harper Johnson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP080",
+            "name": "Aria Martinez",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP081",
+            "name": "Ella Lee",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP082",
+            "name": "Daniel Walker",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP083",
+            "name": "Mason Davis",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP084",
+            "name": "Avery Robinson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP085",
+            "name": "Ethan Wilson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP086",
+            "name": "Eleanor Lewis",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP087",
+            "name": "Liam Carter",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP088",
+            "name": "Isabella Johnson",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP089",
+            "name": "Benjamin Adams",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP090",
+            "name": "Charlotte White",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP091",
+            "name": "Jack Brown",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP092",
+            "name": "Olivia Wilson",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP093",
+            "name": "Jacob Garcia",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP094",
+            "name": "Emma Davis",
+            "status": "In Bench"
+        },
+        {
+            "id": "EMP095",
+            "name": "Ava Clark",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP096",
+            "name": "Mia Carter",
+            "status": "In Project (Internal)"
+        },
+        {
+            "id": "EMP097",
+            "name": "Ethan Clark",
+            "status": "In Management"
+        },
+        {
+            "id": "EMP098",
+            "name": "Sophia Taylor",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP099",
+            "name": "Noah Brown",
+            "status": "In Project (Billable)"
+        },
+        {
+            "id": "EMP100",
+            "name": "Liam Miller",
+            "status": "In Project (Internal)"
+        }
+    ],
+    "Userlogin": [          
+        {
+            "UserAccountId": "1",
+            "username": "rubi.nomar@fujitsu.com",
+            "Fullname": "Rubi, Nomar",
+            "Role": "Admin",
+            "RoleId": "Admin",
+            "UserId": 1,
+            "password": "p@$$w0rd!"
+        } 
+    ]
+}

@@ -1,0 +1,162 @@
+/* src/app/your-component/your-component.component.css */
+
+html, body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Full height of the viewport */
+    overflow: hidden; /* Prevent scrolling on the whole page */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font globally */
+  }
+  
+  .container {
+    position: relative; /* Establish a positioning context */
+    display: flex;
+    height: 96vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .left-side,
+  .right-side {
+    flex: 1; /* Each div takes up equal space */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+  }
+  
+  .left-side {
+    background-color: #ffffff; /* Background color for visibility */
+    flex-direction: column; /* Stack SVG and text vertically */
+    align-items: center; /* Center horizontally */
+  }
+  
+  .icon {
+    max-width: 100%; /* Scale SVG to fit container */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .text {
+    margin: 16px 0 0; /* Space between SVG and text */
+    font-size: 24px; /* Text size */
+    color: #333; /* Text color */
+    text-align: center; /* Center text horizontally */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font */
+  }
+  
+  .right-side {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center form vertically */
+    align-items: center; /* Center form horizontally */
+    padding: 20px; /* Add padding inside the container */
+  }
+  
+  .sign-in-text {
+    margin-bottom: 20px; /* Space below the text */
+    font-size: 30px; /* Font size for the text */
+    color: #333; /* Text color */
+    font-weight: 600; /* Font weight */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font */
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: center; /* Center form elements horizontally */
+    width: 100%; /* Full width of the form */
+    max-width: 400px; /* Set maximum width */
+  }
+  
+  .input-field {
+    width: 100%; /* Full width of the form */
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 10px; /* Space between input fields */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    width: 100%; /* Full width of the form */
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    width: 100%; /* Full width of the input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin-top: 5px; /* Space between label and input field */
+    margin-bottom: 10px; /* Space between input fields */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font to input fields */
+  }
+  
+  label {
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font to labels */
+    font-size: 16px; /* Font size for labels */
+    color: #333; /* Text color */
+    margin-bottom: 5px; /* Space below the label */
+    align-self: flex-start; /* Align label to the start (left) of the form-group */
+  }
+  .submit-button {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Font size of the button text */
+    background-color: white;
+    border: 1px solid #E60012 ;
+    color: #E60012; /* Button text color */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    margin-bottom: 10px; /* Space below the button */
+    width: 105%; /* Full width of the input fields */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font to labels */
+  }
+  
+  .submit-button:hover {
+    background-color: #E60012; /* Light color on hover */
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font to labels */
+  }
+  
+  .additional-options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Space between checkbox and link */
+    width: 100%; /* Full width of the form */
+    font-family: 'Roboto Condensed', sans-serif; /* Apply Roboto Condensed font */
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center; /* Align checkbox and text */
+    font-size: 14px; /* Font size */
+    color: #333; /* Text color */
+    gap: 5px;
+  }
+  
+  .forgot-password {
+    margin-right: -20px;
+    font-size: 14px; /* Font size */
+    color: #E60012; /* Link color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline; /* Underline on hover */
+    font-weight: 600;
+  }
+  .org-icon {
+    position: absolute; /* Position the icon absolutely */
+    margin-left: 1200px;
+    top: 10px; /* Adjust the position as needed */
+    left: 200px; /* Adjust the position as needed */
+    font-size: 900px; /* Adjust the size as needed */
+    color: #E60012; /* Adjust the color as needed */
+    z-index: -9999; /* Lower z-index to place it behind the content */
+  }
